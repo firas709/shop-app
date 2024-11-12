@@ -16,8 +16,7 @@ COPY --from=build /build/target/customer-*.jar /app/
 
 EXPOSE 8088
 
-ENV DB_URL=jdbc:postgresql://postgres-sql-bsn:5432/book_social_network
-ENV MAILDEV_URL=localhost
+
 
 ENV ACTIVE_PROFILE=${PROFILE}
 ENV JAR_VERSION=${APP_VERSION}

@@ -88,8 +88,8 @@ jobs:
       - name: Build & Push to DockerHub
         uses: docker/build-push-action@v5
         with:
-          context: .
-          file: docker/backend/Dockerfile
+          context: customer
+          file: customer/Dockerfile
           push: true
           platforms: linux/amd64
           tags: ${{ secrets.DOCKERHUB_USERNAME }}/hphone-api:latest,${{ secrets.DOCKERHUB_USERNAME }}/hphone-api:latest
