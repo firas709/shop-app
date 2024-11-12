@@ -81,8 +81,7 @@ jobs:
       - name: Extract project version
         id: extract_version
         run: |
-          cd services
-          cd customer
+          cd services/customer
           echo "VERSION=$(./mvnw -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive exec:exec)" >> $GITHUB_OUTPUT
 
       - name: Login to DockerHub
