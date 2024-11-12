@@ -81,7 +81,8 @@ jobs:
       - name: Extract project version
         id: extract_version
         run: |
-          cd services/customer
+          cd services
+          cd customer
           echo "VERSION=$(./mvnw -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive exec:exec)" >> $GITHUB_OUTPUT
 
       - name: Login to DockerHub
@@ -93,11 +94,11 @@ jobs:
       - name: Build & Push to DockerHub
         uses: docker/build-push-action@v5
         with:
-          context: book-network
+          context: services/customer
           file: docker/backend/Dockerfile
           push: true
           platforms: linux/amd64
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hphone-api:${{ steps.extract_version.outputs.VERSION }},${{ secrets.DOCKERHUB_USERNAME }}/hphone-api:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hphone-api:$(date-'%Y-%m-%d%H-%M-%S'),${{ secrets.DOCKERHUB_USERNAME }}/hphone-api:latest
           build-args: |
             PROFILE=dev
             APP_VERSION=${{ steps.extract_version.outputs.VERSION }}
