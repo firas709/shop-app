@@ -92,7 +92,7 @@ jobs:
           file: docker/backend/Dockerfile
           push: true
           platforms: linux/amd64
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hphone-api:$(date-'%Y-%m-%d%H-%M-%S'),${{ secrets.DOCKERHUB_USERNAME }}/hphone-api:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/hphone-api:$(date-'%Y%m%d%H%M%S'),${{ secrets.DOCKERHUB_USERNAME }}/hphone-api:latest
           build-args: |
             PROFILE=dev
             APP_VERSION=$(date-'%Y-%m-%d%H-%M-%S')
