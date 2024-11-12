@@ -3,7 +3,7 @@ name: Customer Backend API Pipeline
 on:
   push:
     paths:
-      - services/customer/**
+      - customer/**
       - docker/backend/**
       - 'docker-compose.yml'
       - customer.yml
@@ -26,7 +26,7 @@ jobs:
 
       - name: Running Unit Tests
         run: |
-          cd services/customer
+          cd customer
           ./mvnw clean compile
   unit-tests:
     runs-on: ubuntu-latest
@@ -45,7 +45,7 @@ jobs:
 
       - name: Running Unit Tests
         run: |
-          cd services/customer
+          cd customer
           ./mvnw clean test
   build:
     runs-on: ubuntu-latest
@@ -65,7 +65,7 @@ jobs:
 
       - name: Compile project
         run: |
-          cd services/customer
+          cd customer
           ./mvnw clean compile
 
   build-image:
@@ -81,7 +81,7 @@ jobs:
       - name: Extract project version
         id: extract_version
         run: |
-          cd services/customer
+          cd customer
           echo "VERSION=$(./mvnw -q -Dexec.executable='echo' -Dexec.args='${project.version}' --non-recursive exec:exec)" >> $GITHUB_OUTPUT
 
       - name: Login to DockerHub
